@@ -98,215 +98,230 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Eco Profile & Impact'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            // User Profile Header Card
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppColors.surface,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.divider),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.04),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 34,
-                    backgroundColor: AppColors.primary,
-                    child: Text(
-                      'R',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 760),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                // User Profile Header Card
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: AppColors.divider),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          children: [
-                            Text(
-                              'Riyaz Shaik',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.textPrimary,
-                              ),
-                            ),
-                            SizedBox(width: 6),
-                            Icon(Icons.verified_rounded, size: 16, color: AppColors.primary),
-                          ],
-                        ),
-                        const SizedBox(height: 2),
-                        const Text(
-                          'Flutter Lab Scholar • B.Tech CSE',
-                          style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                          decoration: BoxDecoration(
-                            color: AppColors.accentLight,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: const Text(
-                            'Eco Champion Level 2',
-                            style: TextStyle(
-                              fontSize: 10.5,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Eco Impact Dashboard
-            Container(
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF1B4332), Color(0xFF2D6A4F)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Expanded(child: Text('Community Eco Metrics',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,)),), SizedBox(width: 8), Icon(Icons.energy_savings_leaf_rounded, color: AppColors.accentWarm, size: 20),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  Row(
+                  child: Row(
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '$totalListings',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Text(
-                              'Items Diverted from Landfill',
-                              style: TextStyle(fontSize: 11, color: Color(0xFFD8F3DC)),
-                            ),
-                          ],
+                      const CircleAvatar(
+                        radius: 34,
+                        backgroundColor: AppColors.primary,
+                        child: Text(
+                          'R',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      Container(width: 1, height: 40, color: Colors.white24),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '₹${(totalSavings / 1000).toStringAsFixed(1)}k',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.accentWarm,
-                              ),
+                            const Row(
+                              children: [
+                                Text(
+                                  'Riyaz Shaik',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                                SizedBox(width: 6),
+                                Icon(Icons.verified_rounded, size: 16, color: AppColors.primary),
+                              ],
                             ),
+                            const SizedBox(height: 2),
                             const Text(
-                              'Community Rupee Savings',
-                              style: TextStyle(fontSize: 11, color: Color(0xFFD8F3DC)),
+                              'Flutter Lab Scholar • B.Tech CSE',
+                              style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                            ),
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: AppColors.accentLight,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: const Text(
+                                'Eco Champion Level 2',
+                                style: TextStyle(
+                                  fontSize: 10.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.primary,
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
+                ),
+                const SizedBox(height: 20),
 
-            // Action / Info Tiles
-            Card(
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.public_rounded, color: AppColors.primary),
-                    title: const Text('UN SDG 12 Commitment', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-                    subtitle: const Text('Responsible Consumption & Circular Economy', style: TextStyle(fontSize: 12)),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
-                    onTap: () => _showImpactDialog(context),
-                  ),
-                  const Divider(height: 1, indent: 56),
-                  ListTile(
-                    leading: const Icon(Icons.layers_outlined, color: AppColors.primary),
-                    title: const Text('App Architecture & Lab Rubrics', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-                    subtitle: const Text('Evaluation criteria, Hero transitions, State', style: TextStyle(fontSize: 12)),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
-                    onTap: () => _showArchitectureDialog(context),
-                  ),
-                  const Divider(height: 1, indent: 56),
-                  ListTile(
-                    leading: const Icon(Icons.assignment_outlined, color: AppColors.primary),
-                    title: const Text('Lab Evaluation Rubric', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-                    subtitle: const Text('25 Total Marks • 6 Evaluation Criteria', style: TextStyle(fontSize: 12)),
-                    trailing: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.accentLight,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Text('25 Marks', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.primary)),
+                // Eco Impact Dashboard
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF1B4332), Color(0xFF2D6A4F)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Community Eco Metrics',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Icon(Icons.energy_savings_leaf_rounded, color: AppColors.accentWarm, size: 20),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '$totalListings',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const Text(
+                                  'Items Diverted from Landfill',
+                                  style: TextStyle(fontSize: 11, color: Color(0xFFD8F3DC)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(width: 1, height: 40, color: Colors.white24),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '₹${(totalSavings / 1000).toStringAsFixed(1)}k',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.accentWarm,
+                                  ),
+                                ),
+                                const Text(
+                                  'Community Rupee Savings',
+                                  style: TextStyle(fontSize: 11, color: Color(0xFFD8F3DC)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
 
-            // Academic Credits Footer
-            Container(
-              padding: const EdgeInsets.all(14),
-              child: const Column(
-                children: [
-                  Text(
-                    'ReVive — Second-Hand Marketplace v1.0.0',
-                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textSecondary),
+                // Action / Info Tiles
+                Card(
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.public_rounded, color: AppColors.primary),
+                        title: const Text('UN SDG 12 Commitment', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                        subtitle: const Text('Responsible Consumption & Circular Economy', style: TextStyle(fontSize: 12)),
+                        trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                        onTap: () => _showImpactDialog(context),
+                      ),
+                      const Divider(height: 1, indent: 56),
+                      ListTile(
+                        leading: const Icon(Icons.layers_outlined, color: AppColors.primary),
+                        title: const Text('App Architecture & Lab Rubrics', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                        subtitle: const Text('Evaluation criteria, Hero transitions, State', style: TextStyle(fontSize: 12)),
+                        trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                        onTap: () => _showArchitectureDialog(context),
+                      ),
+                      const Divider(height: 1, indent: 56),
+                      ListTile(
+                        leading: const Icon(Icons.assignment_outlined, color: AppColors.primary),
+                        title: const Text('Lab Evaluation Rubric', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                        subtitle: const Text('25 Total Marks • 6 Evaluation Criteria', style: TextStyle(fontSize: 12)),
+                        trailing: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: AppColors.accentLight,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: const Text('25 Marks', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.primary)),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Academic Flutter Lab Project • Built with Material 3 & Hero Animations',
-                    style: TextStyle(fontSize: 10.5, color: AppColors.textTertiary),
-                    textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+
+                // Academic Credits Footer
+                Container(
+                  padding: const EdgeInsets.all(14),
+                  child: const Column(
+                    children: [
+                      Text(
+                        'ReVive — Second-Hand Marketplace v1.0.0',
+                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textSecondary),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        'Academic Flutter Lab Project • Built with Material 3 & Hero Animations',
+                        style: TextStyle(fontSize: 10.5, color: AppColors.textTertiary),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

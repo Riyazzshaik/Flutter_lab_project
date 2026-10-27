@@ -296,7 +296,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
-                          'Condition: ',
+                          'Condition: ${currentProduct.condition.label}',
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w700,

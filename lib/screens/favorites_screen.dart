@@ -22,13 +22,32 @@ class FavoritesScreen extends StatelessWidget {
     );
   }
 
+  int _getResponsiveCrossAxisCount(double width) {
+    if (width < 600) return 2;
+    if (width < 960) return 3;
+    if (width < 1280) return 4;
+    return 5;
+  }
+
+  double _getResponsiveAspectRatio(double width) {
+    if (width < 600) return 0.65;
+    if (width < 960) return 0.68;
+    return 0.72;
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = ProductScope.of(context);
     final favoriteProducts = provider.favoriteProducts;
 
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final crossAxisCount = _getResponsiveCrossAxisCount(screenWidth);
+    final childAspectRatio = _getResponsiveAspectRatio(screenWidth);
+    final double horizontalPadding = screenWidth > 1320 ? (screenWidth - 1320) / 2 + 16 : 16.0;
+
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: horizontalPadding,
         title: Row(
           children: [
             const Text('Saved Items'),
@@ -61,17 +80,18 @@ class FavoritesScreen extends StatelessWidget {
               onButtonPressed: onExploreTap,
             )
           : GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.65,
-                crossAxisSpacing: 12,
+              padding: EdgeInsets.fromLTRB(horizontalPadding, 16, horizontalPadding, 24),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: childAspectRatio,
+                crossAxisSpacing: 14,
                 mainAxisSpacing: 14,
               ),
               itemCount: favoriteProducts.length,
               itemBuilder: (context, index) {
                 final product = favoriteProducts[index];
-                return ProductCard(heroTagOverride: "hero-fav-${product.id}",
+                return ProductCard(
+                  heroTagOverride: "hero-fav-${product.id}",
                   product: product,
                   onTap: () => _openProductDetail(context, product),
                   onFavoriteToggle: () => provider.toggleFavorite(product.id),

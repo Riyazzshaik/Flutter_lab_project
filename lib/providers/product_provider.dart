@@ -147,15 +147,16 @@ class ProductScope extends InheritedNotifier<ProductProvider> {
   }) : super(notifier: notifier);
 
   static ProductProvider of(BuildContext context, {bool listen = true}) {
-    if (listen) {
-      return context
-          .dependOnInheritedWidgetOfExactType<ProductScope>()!
-          .notifier!;
-    } else {
-      final widget = context
-          .getElementForInheritedWidgetOfExactType<ProductScope>()
-          ?.widget as ProductScope?;
-      return widget!.notifier!;
+    final scope = listen
+        ? context.dependOnInheritedWidgetOfExactType<ProductScope>()
+        : (context.getElementForInheritedWidgetOfExactType<ProductScope>()?.widget as ProductScope?);
+
+    if (scope == null || scope.notifier == null) {
+      throw FlutterError(
+        'ProductScope.of() called with a context that does not contain a ProductScope.\n'
+        'Ensure that the widget tree has a ProductScope ancestor providing ProductProvider.',
+      );
     }
+    return scope.notifier!;
   }
 }

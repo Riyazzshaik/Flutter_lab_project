@@ -8,6 +8,9 @@ enum ProductCondition {
 
   const ProductCondition(this.label, this.description);
 
+  /// Convenient alias for UI components
+  String get displayName => label;
+
   static ProductCondition fromString(String value) {
     switch (value.toLowerCase()) {
       case 'like new':

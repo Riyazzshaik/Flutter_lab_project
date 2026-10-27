@@ -88,6 +88,19 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  int _getResponsiveCrossAxisCount(double width) {
+    if (width < 600) return 2;
+    if (width < 960) return 3;
+    if (width < 1280) return 4;
+    return 5;
+  }
+
+  double _getResponsiveAspectRatio(double width) {
+    if (width < 600) return 0.65;
+    if (width < 960) return 0.68;
+    return 0.72;
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = ProductScope.of(context);
@@ -96,9 +109,14 @@ class HomeScreen extends StatelessWidget {
     final hasSearchOrCategory =
         provider.searchQuery.isNotEmpty || provider.selectedCategory != 'All';
 
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final crossAxisCount = _getResponsiveCrossAxisCount(screenWidth);
+    final childAspectRatio = _getResponsiveAspectRatio(screenWidth);
+    final double horizontalPadding = screenWidth > 1320 ? (screenWidth - 1320) / 2 + 16 : 16.0;
+
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 16,
+        titleSpacing: horizontalPadding,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -174,7 +192,7 @@ class HomeScreen extends StatelessWidget {
             tooltip: 'View Favorites',
             onPressed: onNavigateToFavorites,
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: horizontalPadding > 16 ? horizontalPadding : 8),
         ],
       ),
       body: CustomScrollView(
@@ -182,7 +200,7 @@ class HomeScreen extends StatelessWidget {
           // Search & Filter Bar
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+              padding: EdgeInsets.fromLTRB(horizontalPadding, 12, horizontalPadding, 12),
               child: SearchBarWidget(
                 query: provider.searchQuery,
                 onChanged: provider.setSearchQuery,
@@ -194,7 +212,7 @@ class HomeScreen extends StatelessWidget {
           // Sustainability Banner
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 4),
               child: SustainabilityBanner(
                 onTap: () => _showSdgInfoDialog(context),
               ),
@@ -215,8 +233,8 @@ class HomeScreen extends StatelessWidget {
           // Featured Products Section (Show when not actively searching or when in All)
           if (!hasSearchOrCategory && featuredProducts.isNotEmpty) ...[
             SliverToBoxAdapter(
-                                          child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(horizontalPadding, 4, horizontalPadding, 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -261,7 +279,7 @@ class HomeScreen extends StatelessWidget {
               child: SizedBox(
                 height: 242,
                 child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   scrollDirection: Axis.horizontal,
                   itemCount: featuredProducts.length,
                   itemBuilder: (context, index) {
@@ -285,7 +303,7 @@ class HomeScreen extends StatelessWidget {
           // Product Grid Header
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+              padding: EdgeInsets.fromLTRB(horizontalPadding, 4, horizontalPadding, 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -349,18 +367,19 @@ class HomeScreen extends StatelessWidget {
             )
           else
             SliverPadding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+              padding: EdgeInsets.fromLTRB(horizontalPadding, 0, horizontalPadding, 24),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.65,
-                  crossAxisSpacing: 12,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  childAspectRatio: childAspectRatio,
+                  crossAxisSpacing: 14,
                   mainAxisSpacing: 14,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final product = filteredProducts[index];
-                    return ProductCard(heroTagOverride: "hero-home-${product.id}",
+                    return ProductCard(
+                      heroTagOverride: "hero-home-${product.id}",
                       product: product,
                       onTap: () => _openProductDetail(context, product, customHeroTag: "hero-home-${product.id}"),
                       onFavoriteToggle: () => provider.toggleFavorite(product.id),
