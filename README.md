@@ -234,10 +234,11 @@ c:\Users\Riyaz\OneDrive\Desktop\flutter\
 
 ---
 
-## 🔗 12. Submission & Portal Details
+## 🔗 12. Submission & Deployment Details
 
-* **GitHub Repository URL:** `[STUDENT_SUBMISSION_URL: https://github.com/<your-username>/revive_marketplace]` *(Insert student repo link here)*
-* **VEDIC Portal Submission ID / Link:** `[VEDIC_PORTAL_LINK: https://vedic.edu.in/portal/student/submission]` *(Insert VEDIC portal link here)*
+* **Live Web Application (GitHub Pages):** [https://riyazzshaik.github.io/Flutter_lab_project/](https://riyazzshaik.github.io/Flutter_lab_project/)
+* **GitHub Repository URL:** [https://github.com/Riyazzshaik/Flutter_lab_project](https://github.com/Riyazzshaik/Flutter_lab_project)
+* **Deployment Target:** GitHub Pages via official GitHub Actions artifact pipeline (`.github/workflows/deploy.yml`)
 * **Student Name:** Shaik Riyaz
 * **Academic Course:** Flutter Mobile Application Laboratory
 * **Evaluation Total:** 25 Marks
